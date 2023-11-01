@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:world_news/controller/bottom_navi.dart';
 import 'package:world_news/controller/news_api_controller.dart';
-import 'package:world_news/screens/screen_home/screen_home.dart';
+
+import 'package:world_news/screens/splash_screen/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: ScreenHome(),
+        home: SplashScreen(),
       ),
     );
   }
