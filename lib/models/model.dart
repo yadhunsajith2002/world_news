@@ -47,6 +47,8 @@ class Article {
   String? urlToImage;
   DateTime? publishedAt;
   String? content;
+  bool isFavorite;
+  bool isBookmarked;
 
   Article({
     this.source,
@@ -57,6 +59,8 @@ class Article {
     this.urlToImage,
     this.publishedAt,
     this.content,
+    this.isFavorite = false,
+    this.isBookmarked = false,
   });
 
   factory Article.fromJson(Map<String, dynamic> json) => Article(

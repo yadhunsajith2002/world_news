@@ -1,19 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:world_news/constants/constants.dart';
 import 'package:world_news/controller/news_api_controller.dart';
-import 'package:world_news/screens/home_screen/home_screen.dart';
 
-class ArticleScreen extends StatelessWidget {
+class ArticleScreen extends StatefulWidget {
   ArticleScreen({Key? key, required this.index}) : super(key: key);
 
   final int index;
+
+  @override
+  State<ArticleScreen> createState() => _ArticleScreenState();
+}
+
+class _ArticleScreenState extends State<ArticleScreen> {
   @override
   Widget build(BuildContext context) {
+    var providerwatch = context.watch<NewApiService>();
+    // var article = providerwatch.apidata.articles![widget.index];
     Widget sizedBox = SizedBox(
       height: 15,
     );
-    var providerwatch = context.watch<NewApiService>();
+
     return Scaffold(
         body: CustomScrollView(
       slivers: [
@@ -26,7 +34,7 @@ class ArticleScreen extends StatelessWidget {
                 image: DecorationImage(
                     fit: BoxFit.cover,
                     image: NetworkImage(providerwatch
-                        .apidata.articles![index].urlToImage
+                        .apidata.articles![widget.index].urlToImage
                         .toString())),
                 color: Colors.black.withOpacity(0.04),
                 borderRadius: BorderRadius.only(
@@ -52,7 +60,8 @@ class ArticleScreen extends StatelessWidget {
                 children: [
                   Text(
                     providerwatch.apidata.articles![index].title.toString(),
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: GoogleFonts.poppins(
+                        fontSize: 20, fontWeight: FontWeight.bold),
                     textAlign: TextAlign.justify,
                   ),
                   sizedBox,
@@ -77,13 +86,13 @@ class ArticleScreen extends StatelessWidget {
                         IconButton(
                             onPressed: () {},
                             icon: Icon(
-                              Icons.favorite_border,
+                              Icons.thumb_up,
                               color: primaryClr,
                             )),
                         IconButton(
                             onPressed: () {},
                             icon: Icon(
-                              Icons.bookmark,
+                              Icons.thumb_down_alt_outlined,
                               color: primaryClr,
                             )),
                       ],
@@ -94,17 +103,30 @@ class ArticleScreen extends StatelessWidget {
                     thickness: 2,
                   ),
                   sizedBox,
-                  Text(
-                    providerwatch.apidata.articles![index].content.toString(),
-                    style: TextStyle(fontSize: 16, height: 1.8),
-                    textAlign: TextAlign.justify,
-                  ),
-                  Divider(),
-                  Text(
-                    providerwatch.apidata.articles![index].description
-                        .toString(),
-                    style: TextStyle(fontSize: 16, height: 1.8),
-                    textAlign: TextAlign.justify,
+                  Container(
+                    decoration: BoxDecoration(
+                        color: Colors.grey.shade200,
+                        borderRadius: BorderRadius.circular(20)),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Column(
+                        children: [
+                          Text(
+                            providerwatch.apidata.articles![index].content
+                                .toString(),
+                            style: TextStyle(fontSize: 16, height: 1.8),
+                            textAlign: TextAlign.justify,
+                          ),
+                          Divider(),
+                          Text(
+                            providerwatch.apidata.articles![index].description
+                                .toString(),
+                            style: TextStyle(fontSize: 16, height: 1.8),
+                            textAlign: TextAlign.justify,
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ],
               ),

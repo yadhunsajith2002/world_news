@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:world_news/constants/constants.dart';
 import 'package:world_news/controller/news_api_controller.dart';
 
-import 'package:world_news/screens/description_screen/description_screen.dart';
+import 'package:world_news/screens/article_screen/ariticle_screen.dart';
 import 'package:world_news/widgets/shimmer/shimme_loading.dart';
 import 'package:world_news/screens/home_screen/widgets/tabBars/widget/custom_Container.dart';
 

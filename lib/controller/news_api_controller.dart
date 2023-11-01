@@ -67,8 +67,8 @@ class NewApiService with ChangeNotifier {
     notifyListeners();
   }
 
-  onSubmit({required String searchquery}) async {
-    await searchNews(searchQuery: searchquery);
+  onSubmit({required String searchQuery}) async {
+    await searchNews(searchQuery: searchQuery);
     notifyListeners();
   }
 }

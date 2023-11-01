@@ -23,13 +23,13 @@ class _ScreenHomeState extends State<ScreenHome> {
 
   @override
   Widget build(BuildContext context) {
-    var providerRead = context.read<Bottomcontroller>();
-    var providerWatch = context.watch<Bottomcontroller>();
+    var providerRead = context.read<ButtonActionController>();
+    var providerWatch = context.watch<ButtonActionController>();
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: providerWatch.currentIndex,
         onTap: (value) {
-          providerRead.ontap(index: value);
+          providerRead.bottomOntap(index: value);
         },
         showSelectedLabels: false,
         showUnselectedLabels: false,

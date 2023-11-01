@@ -6,8 +6,9 @@ class ShimmerLoading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var width = MediaQuery.of(context).size.width;
     return Padding(
-      padding: const EdgeInsets.all(12.0),
+      padding: const EdgeInsets.all(10.0),
       child: Container(
         child: Row(
           mainAxisSize: MainAxisSize.min,
@@ -16,7 +17,7 @@ class ShimmerLoading extends StatelessWidget {
           children: [
             ShimmerWidget.rectangular(
               height: 150,
-              width: 150,
+              width: width * 0.4,
               shapeBorder: RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(15))),
             ),
@@ -29,7 +30,7 @@ class ShimmerLoading extends StatelessWidget {
               children: [
                 ShimmerWidget.rectangular(
                   height: 30,
-                  width: 200,
+                  width: width * 0.5,
                   shapeBorder: RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10))),
                 ),
@@ -38,7 +39,7 @@ class ShimmerLoading extends StatelessWidget {
                 ),
                 ShimmerWidget.rectangular(
                   height: 30,
-                  width: 200,
+                  width: width * 0.5,
                   shapeBorder: RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10))),
                 ),
@@ -47,7 +48,7 @@ class ShimmerLoading extends StatelessWidget {
                 ),
                 ShimmerWidget.rectangular(
                   height: 30,
-                  width: 200,
+                  width: width * 0.5,
                   shapeBorder: RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10))),
                 ),

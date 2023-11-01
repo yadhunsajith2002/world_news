@@ -1,17 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:world_news/constants/constants.dart';
+import 'package:world_news/controller/bottom_navi.dart';
 import 'package:world_news/controller/news_api_controller.dart';
 
-class CustomContainer extends StatelessWidget {
+class CustomContainer extends StatefulWidget {
   CustomContainer({super.key, required this.index});
 
   final int index;
 
   @override
+  State<CustomContainer> createState() => _CustomContainerState();
+}
+
+class _CustomContainerState extends State<CustomContainer> {
+  @override
   Widget build(BuildContext context) {
     var providerwatch = context.watch<NewApiService>();
+
+    var article = providerwatch.apidata.articles![widget.index];
+
     return Container(
       decoration: BoxDecoration(
           border: Border.all(color: Colors.grey, width: 1),
@@ -30,7 +40,7 @@ class CustomContainer extends StatelessWidget {
                 image: DecorationImage(
                     fit: BoxFit.cover,
                     image: NetworkImage(providerwatch
-                        .apidata.articles![index].urlToImage
+                        .apidata.articles![widget.index].urlToImage
                         .toString()))),
           ),
           SizedBox(
@@ -42,16 +52,17 @@ class CustomContainer extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  DateFormat.yMMMEd().format(
-                      providerwatch.apidata.articles![index].publishedAt!),
+                  DateFormat.yMMMEd().format(providerwatch
+                      .apidata.articles![widget.index].publishedAt!),
                   style: TextStyle(fontSize: 18, color: greyclr),
                 ),
                 SizedBox(
                   height: 15,
                 ),
                 Text(
-                  providerwatch.apidata.articles![index].author.toString(),
-                  style: TextStyle(
+                  providerwatch.apidata.articles![widget.index].author
+                      .toString(),
+                  style: GoogleFonts.poppins(
                       fontSize: 22,
                       fontWeight: FontWeight.bold,
                       color: primaryClr),
@@ -60,8 +71,9 @@ class CustomContainer extends StatelessWidget {
                   height: 15,
                 ),
                 Text(
-                  providerwatch.apidata.articles![index].title.toString(),
-                  style: TextStyle(fontSize: 18, color: primaryClr),
+                  providerwatch.apidata.articles![widget.index].title
+                      .toString(),
+                  style: GoogleFonts.lato(fontSize: 18, color: primaryClr),
                 ),
                 SizedBox(
                   height: 30,
@@ -100,17 +112,27 @@ class CustomContainer extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.favorite_border,
-                          color: primaryClr,
-                        )),
+                        onPressed: () {
+                          article.isFavorite = !article.isFavorite;
+                          setState(() {});
+                        },
+                        icon: article.isFavorite
+                            ? Icon(
+                                Icons.favorite,
+                                color: primaryClr,
+                              )
+                            : Icon(Icons.favorite_border)),
                     IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.bookmark,
-                          color: primaryClr,
-                        )),
+                        onPressed: () {
+                          article.isBookmarked = !article.isBookmarked;
+                          setState(() {});
+                        },
+                        icon: article.isBookmarked
+                            ? Icon(
+                                Icons.bookmark,
+                                color: primaryClr,
+                              )
+                            : Icon(Icons.bookmark_outline)),
                   ],
                 )
               ],

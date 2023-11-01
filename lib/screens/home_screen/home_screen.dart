@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'package:world_news/constants/constants.dart';
 
 import 'package:world_news/screens/home_screen/widgets/carousel/carousel_builder.dart';
+import 'package:world_news/screens/home_screen/widgets/drawer/drawer_refact.dart';
 
 import 'package:world_news/screens/home_screen/widgets/indicator/customTab_indicator.dart';
 
@@ -18,21 +20,26 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        iconTheme: IconThemeData(color: primaryClr),
         backgroundColor: whiteclr,
         elevation: 0,
         centerTitle: true,
-        title: Text(
-          "News App",
-          style: TextStyle(color: Colors.black, fontSize: 24),
-        ),
-        leading: IconButton(
-          onPressed: () {},
-          icon: Icon(
-            Icons.menu,
-            color: Colors.black,
-          ),
+        title: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              "News App",
+              style: GoogleFonts.poppins(color: Colors.black, fontSize: 24),
+            ),
+            Image.asset(
+              "assets/images/news-break-local-breaking-2018-09-12.png",
+              height: 20,
+              width: 30,
+            ),
+          ],
         ),
       ),
+      drawer: MyDrawer(),
       body: DefaultTabController(
         length: 5,
         child: NestedScrollView(

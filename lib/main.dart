@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
           create: (context) => NewApiService(),
         ),
         ChangeNotifierProvider(
-          create: (context) => Bottomcontroller(),
+          create: (context) => ButtonActionController(),
         ),
       ],
       child: MaterialApp(

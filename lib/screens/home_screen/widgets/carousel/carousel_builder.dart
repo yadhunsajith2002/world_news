@@ -81,7 +81,7 @@ class CarouselCustom extends StatelessWidget {
         if (provider.isLoading) {
           return ListView.builder(
             itemBuilder: (context, index) {
-              return ShimmerWidget.rectangular(height: 150, width: 250);
+              return ShimmerWidget.rectangular(height: 150, width: 230);
             },
           );
         } else if (provider.error.isNotEmpty) {
@@ -105,7 +105,6 @@ class CarouselCustom extends StatelessWidget {
                           image: DecorationImage(
                               fit: BoxFit.cover,
                               image: AssetImage(images[index])),
-                          color: Colors.black,
                           borderRadius: BorderRadius.circular(15)),
                     ),
                   ),
